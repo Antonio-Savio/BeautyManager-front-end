@@ -1,9 +1,8 @@
 "use client"
 
-import { Box, Button, CloseButton, Dialog, HStack, Portal, Text } from "@chakra-ui/react"
+import { Box, Button, CloseButton, Dialog, HStack, Portal } from "@chakra-ui/react"
 import { ReactNode, useState } from "react"
 import { useRouter } from "next/navigation"
-import { ScheduleCard } from "../scheduleCard"
 import { SchedulingProps } from "../../page"
 import { FcBusinesswoman, FcCalendar, FcClock, FcPhone } from "react-icons/fc"
 import { FaMoneyBillAlt } from "react-icons/fa"

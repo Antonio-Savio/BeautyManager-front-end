@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Button, Flex, Heading } from "@chakra-ui/react";
 import Link from "next/link";
 import { NewAssignmentForm } from "./components/form";
 import { FaAngleLeft } from "react-icons/fa";
