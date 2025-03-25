@@ -175,11 +175,24 @@ export function NewSchedulingForm(){
                         <SelectValueText placeholder="Selecione o serviço" />
                     </Select.Trigger>
                     <Select.Content>
-                        {assignmentList.items.map((assign) => (
-                            <Select.Item item={assign} key={assign.id}>
-                                {assign.name}
-                            </Select.Item>
-                        ))}
+                        {assignments.length === 0 ? (
+                            <Flex mt={1}>
+                                <Text color="red.400">
+                                    Nenhum serviço foi criado.
+                                    <Link href="/dashboard/assignments/new" style={{ marginLeft: "3px", fontWeight: "bold", color: "#16a34a" }}>
+                                        <Text as="span" _hover={{  textDecoration: "underline" }}>
+                                            Cadastre um novo serviço.
+                                        </Text>
+                                    </Link>
+                                </Text>
+                            </Flex>
+                        ): (
+                            assignmentList.items.map((assign) => (
+                                <Select.Item item={assign} key={assign.id}>
+                                    {assign.name}
+                                </Select.Item>
+                            ))
+                        )}
                     </Select.Content>
                 </Select.Root>
             </Box>
