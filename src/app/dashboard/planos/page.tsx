@@ -9,7 +9,7 @@ export default async function Planos(){
 
     return(
         <>
-            <Heading color="beauty.action" mb={6} fontSize="3xl">Planos</Heading>
+            <Heading fontWeight="bold" mb={6} fontSize="3xl">Planos</Heading>
 
             <Flex gap="4" mb="5" w="100%" flexDir={{ base: "column", md: "row" }}>
                 <Flex bg="beauty.lightPink" flex="1" direction="column" p={5} rounded={8}>

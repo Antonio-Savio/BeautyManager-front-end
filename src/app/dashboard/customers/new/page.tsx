@@ -15,7 +15,7 @@ export default function New(){
                         </Flex>
                     </Button>
                 </Link>
-                <Heading color="beauty.golden" fontSize="3xl">Novo Cliente</Heading>
+                <Heading fontWeight="bold" fontSize="3xl">Novo Cliente</Heading>
             </Flex>
 
             <Flex bg="beauty.lightPink" justifyContent="center" alignItems="center" direction="column" p={5} rounded={8}>

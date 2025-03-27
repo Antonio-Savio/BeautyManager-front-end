@@ -9,7 +9,7 @@ export default async function Profile(){
 
     return(
         <>
-            <Heading color="beauty.action" mb={6} fontSize="3xl">Minha conta</Heading>
+            <Heading fontWeight="bold" mb={6} fontSize="3xl">Minha conta</Heading>
 
             <Flex bg="beauty.lightPink" direction="column" p={5} rounded={8}>
                 <ProfileForm user={user} />

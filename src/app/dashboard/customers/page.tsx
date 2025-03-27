@@ -23,7 +23,7 @@ export default async function Customers(){
     return(
         <>
             <Flex mb={6} gap={5} alignItems="center" wrap="wrap">
-                <Heading color="beauty.golden" fontSize="3xl">Principais Clientes</Heading>
+                <Heading fontWeight="bold" fontSize="3xl">Principais Clientes</Heading>
                 <Link href="/dashboard/customers/new">
                     <Button bg="beauty.action" h="fit-content" py={1} _hover={{ bg: "beauty.hover", transition: "0.3s" }}>
                         Novo Cliente

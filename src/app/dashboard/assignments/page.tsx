@@ -19,7 +19,7 @@ export default async function Assignments(){
     return(
         <>
             <Flex mb={6} gap={5} alignItems="center">
-                <Heading color="beauty.golden" fontSize="3xl">Serviços</Heading>
+                <Heading fontWeight="bold" fontSize="3xl">Serviços</Heading>
                 <Link href="/dashboard/assignments/new">
                     <Button bg="beauty.action" h="fit-content" py={1} _hover={{ bg: "beauty.hover", transition: "0.3s" }}>
                         Novo Serviço

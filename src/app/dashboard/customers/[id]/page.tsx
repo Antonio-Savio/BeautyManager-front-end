@@ -35,7 +35,7 @@ export default async function CustomerUpdate(
                         </Flex>
                     </Button>
                 </Link>
-                <Heading color="beauty.action" mb={3} fontSize="3xl">Atualizar Cliente</Heading>
+                <Heading fontWeight="bold" mb={3} fontSize="3xl">Atualizar Cliente</Heading>
             </Flex>
 
             <Flex bg="beauty.lightPink" direction="column" p={5} rounded={8}>
