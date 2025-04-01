@@ -37,7 +37,8 @@ export default async function Dashboard(){
     
     const parseDate = (dateStr: string) => {
         const [dd, mm, yy] = dateStr.split(" ")[1].split("/");
-        return new Date(`${yy}/${mm}/${dd}`).getTime();
+
+        return new Date(`20${yy}/${mm}/${dd}`).getTime();
     };
 
     return(
@@ -63,7 +64,13 @@ export default async function Dashboard(){
                         </Heading>
 
                         {Object.entries(groupedSchedulings[category])
-                        .sort(([a], [b]) => parseDate(a) - parseDate(b))
+                        .sort(([a], [b]) => {
+                            if(category === "datas futuras"){
+                                return parseDate(a) - parseDate(b)
+                            } else {
+                                return parseDate(b) - parseDate(a)
+                            }
+                        })
                         .map(([date, items]) => (
                             <Box key={date} mb={3}>
                                 {category === orderedCategories[2] || category === orderedCategories[3] ? (
