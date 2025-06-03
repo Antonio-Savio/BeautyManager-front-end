@@ -31,7 +31,7 @@ export function Form(){
     }
 
     return(
-        <>
+        <form aria-label="Formulário de cadastro">
             <Input
                 placeholder='Nome do salão de beleza'
                 type="text"
@@ -62,6 +62,7 @@ export function Form(){
             />
 
             <Button
+                width="100%"
                 bgColor="beauty.action"
                 mt={6}
                 fontWeight="bold"
@@ -81,6 +82,6 @@ export function Form(){
                     </Text>
                 </Link>
             </Center>
-        </>
+        </form>
     )
 }

@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useContext } from "react";
-import { AuthContext } from "@/context/AuthContext";
+import { useState } from "react";
+import { useAuthContext } from "@/context/AuthContext";
 import { PasswordInput } from "@/components/ui/password-input";
 import { Button, Center, Input, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
 export function Form(){
-    const { signIn } = useContext(AuthContext);
+    const { signIn } = useAuthContext();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -16,7 +16,7 @@ export function Form(){
     }
 
     return(
-        <>
+        <form aria-label="Formulário de login">
             <Input
                 placeholder='Digite seu e-mail'
                 type="email"
@@ -37,6 +37,7 @@ export function Form(){
             />
 
             <Button
+                width="100%"
                 bgColor="beauty.action"
                 mt={6}
                 fontWeight="bold"
@@ -56,6 +57,6 @@ export function Form(){
                     </Text>
                 </Link>
             </Center>
-        </>
+        </form>
     )
 }
