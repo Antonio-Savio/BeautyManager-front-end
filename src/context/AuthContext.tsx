@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, createContext, ReactNode } from "react";
+import { useState, createContext, ReactNode, useContext } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from 'next/navigation'
 import Router from "next/router";
@@ -82,3 +82,5 @@ export function AuthProvider({ children }: { children: ReactNode }){
         </AuthContext.Provider>
     )
 }
+
+export const useAuthContext = () => useContext(AuthContext);
