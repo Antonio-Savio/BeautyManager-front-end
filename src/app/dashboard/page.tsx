@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Box, Button, Flex, Heading, Spinner, Text } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react"
 import { serverApi } from "@/services/serverApi";
 import { CustomersProps } from "./customers/page";
 import { AssignmentProps } from "./assignments/page";
@@ -15,6 +15,11 @@ export interface SchedulingProps{
     assignment: AssignmentProps;
     customer: CustomersProps;
 }
+
+function capitalizeFirstLetter(string: string) {
+    if (!string) return string;
+    return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
 export default async function Dashboard(){
     const api = await serverApi();
@@ -36,9 +41,14 @@ export default async function Dashboard(){
     const orderedCategories = ["hoje", "amanhã", "datas futuras", "datas passadas"];
     
     const parseDate = (dateStr: string) => {
-        const [dd, mm, yy] = dateStr.split(" ")[1].split("/");
+        const parts = dateStr.split(" ");
+        if (parts.length < 2) return 0;
 
-        return new Date(`20${yy}/${mm}/${dd}`).getTime();
+        const datePart = parts[1];
+        const [day, month, year] = datePart.split("/");
+        if (!day || !month || !year) return 0;
+
+        return new Date(`20${year}/${month}/${day}`).getTime();
     };
 
     return(
@@ -56,36 +66,49 @@ export default async function Dashboard(){
                 <Text color="gray.400">Nenhum agendamento cadastrado</Text>
             )}
 
-            {orderedCategories.map(category => (
-                groupedSchedulings[category] ? (
+            {orderedCategories.map(category => {
+                const categorySchedulings = groupedSchedulings[category];
+                if(!categorySchedulings) return null;
+
+                const sortedDatesForCategory = Object.entries(categorySchedulings)
+                    .sort(([dateA], [dateB]) => {
+                        const isFutureDatesCategory = category === "datas futuras";
+                        if (isFutureDatesCategory) {
+                            return parseDate(dateA) - parseDate(dateB);
+                        } else {
+                            return parseDate(dateB) - parseDate(dateA);
+                        }
+                    })
+                
+                return (
                     <Box key={category} mb={5}>
                         <Heading fontSize="lg" fontWeight="bold" mb={3}>
-                            {category.charAt(0).toUpperCase() + category.slice(1)}
+                            {capitalizeFirstLetter(category)}
                         </Heading>
 
-                        {Object.entries(groupedSchedulings[category])
-                        .sort(([a], [b]) => {
-                            if(category === "datas futuras"){
-                                return parseDate(a) - parseDate(b)
-                            } else {
-                                return parseDate(b) - parseDate(a)
-                            }
-                        })
-                        .map(([date, items]) => (
-                            <Box key={date} mb={3}>
-                                {category === orderedCategories[2] || category === orderedCategories[3] ? (
-                                    <Text as="h4" fontSize="md" mb={2}>{date}</Text>
-                                ) : null}
-                                {items.map(item => (
-                                    <Modal key={item.id} item={item}>
-                                        <ScheduleCard item={item} />
-                                    </Modal>
-                                ))}
-                            </Box>
-                        ))}
+                        {sortedDatesForCategory
+                        .map(([date, items]) => {
+                            const shouldDisplayDateSubHeader = category === "datas futuras" || category === "datas passadas";
+                            
+                            return (
+                                <Box key={date} mb={3}>
+                                    {shouldDisplayDateSubHeader && (
+                                        <Text as="h4" fontSize="md" mb={2}>
+                                            {capitalizeFirstLetter(date)}
+                                        </Text>
+                                    )}
+                                    
+                                    {items.map(item => (
+                                        <Modal key={item.id} item={item}>
+                                            <ScheduleCard item={item} />
+                                        </Modal>
+                                    ))}
+                                </Box>
+                            )
+                        })}
                     </Box>
-                ) : null
-            ))}
+                )
+            })}
         </>
     )
 }
