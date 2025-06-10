@@ -103,7 +103,7 @@ export function NewSchedulingForm(){
     }
 
     return (
-        <>
+        <form aria-label="Formulário de novo agendamento" style={{ width: '100%' }}>
             <Box my={3} w="100%" position="relative">
                 <Text>Nome do cliente ou telefone</Text>
                 <Input 
@@ -201,6 +201,7 @@ export function NewSchedulingForm(){
                 <Text>Horário</Text>
                 <Input
                     type="time"
+                    aria-label="Horário"
                     bg="beauty.bgColor"
                     rounded={5}
                     value={time}
@@ -212,6 +213,7 @@ export function NewSchedulingForm(){
                 <Text>Data</Text>
                 <Input
                     type="date"
+                    aria-label="Data"
                     bg="beauty.bgColor"
                     rounded={5}
                     value={date}
@@ -229,7 +231,7 @@ export function NewSchedulingForm(){
             >
                 Cadastrar
             </Button>
-        </>
+        </form>
     )
 
 }

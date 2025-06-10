@@ -7,7 +7,7 @@ export function ScheduleCard({ item }: { item: SchedulingProps }){
     return(
         <Flex key={item.id} bg="beauty.lightPink" justifyContent="space-between" direction={{ base: "column", sm: "row"}} mb={3} px={5} py={4} rounded={8} w="100%" transition="0.3s" _hover={{ bg: "beauty.hover" }}>
             <Flex gap={2} alignItems="center" overflow="hidden" minWidth={0} pr={3} flexShrink={0}>
-                <Box flexShrink={0}>
+                <Box aria-label="ícone de relógio" flexShrink={0}>
                     <FcClock width={16} height={16} />
                 </Box>
                 <Text>
