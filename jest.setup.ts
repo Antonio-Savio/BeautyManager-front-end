@@ -32,3 +32,7 @@ if (typeof window.matchMedia !== 'function') {
     })),
   });
 }
+
+if (typeof window !== 'undefined') {
+  HTMLElement.prototype.scrollTo = jest.fn();
+}

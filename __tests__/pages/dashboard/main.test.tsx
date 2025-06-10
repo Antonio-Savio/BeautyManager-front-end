@@ -1,6 +1,6 @@
 import Dashboard from "@/app/dashboard/page";
 import { serverApi } from "@/services/serverApi";
-import { render, screen, waitFor } from "@/components/test-utils";
+import { render, screen } from "@/components/test-utils";
 
 jest.mock('@/services/serverApi')
 
@@ -46,6 +46,7 @@ describe('Dashboard page', () => {
         expect(screen.getByRole('button', { name: /Novo Agendamento/i })).toBeInTheDocument();
         expect(screen.getByRole('link', { name: /Novo Agendamento/i })).toHaveAttribute('href', '/dashboard/new')
         expect(screen.getByText('Nenhum agendamento cadastrado')).toBeInTheDocument();
+        expect(screen.queryByText('Hoje')).not.toBeInTheDocument();
         expect(mockApiGet).toHaveBeenCalledTimes(1);
         expect(mockApiGet).toHaveBeenCalledWith("/schedule");
     })
@@ -56,8 +57,11 @@ describe('Dashboard page', () => {
 
         render(await Dashboard())
 
+        const dateRegex = /^(Seg|Ter|Qua|Qui|Sex|Sáb|Dom)\.,\s(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{2}$/;
+
         expect(screen.getByText('Hoje')).toBeInTheDocument();
         expect(screen.getByText('Amanhã')).toBeInTheDocument();
         expect(screen.getByText('Datas futuras')).toBeInTheDocument();
+        expect(screen.getByText(dateRegex)).toBeInTheDocument();
     })
 })
