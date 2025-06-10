@@ -13,6 +13,9 @@ A interface se integra perfeitamente com a [API Back-End do BeautyManager](https
 
 ---
 ## 🌐 **Sistema em funcionamento**
+
+https://github.com/user-attachments/assets/8f725397-0498-4d3a-a0fc-fb5243468141
+
 <img src="./public/images/beauty-manager.gif" alt="Demonstração do BeautyManager">
 
 ---
